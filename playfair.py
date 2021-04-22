@@ -51,12 +51,11 @@ fname = 'output/' + today.strftime("%Y%m%d") + '_' + fID + '.md'
 f = open(fname, 'w')
 
 for x in range(0, matrixCopies):
-    f.write('# ' + today.strftime("%Y%m%d") + '\n')
-    f.write('\n')
+    f.write('# ' + today.strftime("%Y%m%d") + '\n\n')
     f.write(PFmatrix)
-    f.write('\n<br>\n')
+    f.write('\n---\n')
 
-f.write('For Academic Purposes Only - GPL-3.0-only  \n')
+f.write('For Academic Purposes Only - GPL-3.0-only  \n\n')
 f.write('[Source Code](https://github.com/alexpaths/playfair)\n')
 f.close()
 
