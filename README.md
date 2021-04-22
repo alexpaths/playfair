@@ -8,8 +8,8 @@ and numbers (0-9) for use with the [Wheatstone–Playfair cipher][1] - a systemm
 ### Authentication
 
 1. Users predistribute matrix pair
-2. Alice (person 1) picks two letters any two letters and asks Bob (person 2) to 'authenticate <Letter 1> <Letter2>'
-3. Bob (person 2) would respond with the letters as if he was encrypting the digram as instructed below.
+2. Alice (person 1) picks any two characters and asks Bob (person 2) to 'authenticate <Char 1> <Char 2>'
+3. Bob (person 2) would respond with the characters  as if they were encrypting the digram as instructed below.
 
 ### Encrypting
 
@@ -40,6 +40,8 @@ Similarly, if the characters had been in the same column, we would choose the ch
 'OR' again forms a box, so 'MT'
 
 Lastly 'LD' forms a box, so 'NB'
+
+The transferred, encrypted message would read: 'JC MK MY MT NB'
 
 Decryption would work in the opposite way. Both parties would require the exact matrix in order to communicate.
 
