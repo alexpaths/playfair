@@ -1,5 +1,7 @@
 # Playfair Matrix Creator
 
+[![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/PyCQA/pylint)
+
 This script creates a random 6x6 matrix consisting of capital letters 
 and numbers (0-9) for use with the [Wheatstone–Playfair cipher][1] - a systemmatic digram substitution cipher. This easy to use pocket cipher is a great intro ciphers and encryption.
 

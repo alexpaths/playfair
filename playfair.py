@@ -1,7 +1,5 @@
-# Playfair Cipher Matrix Generator
-#
-# See README.md for details
-# 
+'''Playfair Cipher Matrix Generator
+See README.md for details'''
 
 ## Imports
 from datetime import date
@@ -9,54 +7,42 @@ import string
 import random
 
 ## Global Variables
-today = date.today()
-choices = string.ascii_uppercase + string.digits
+CHOICES = ''.join([string.ascii_uppercase,string.digits])
 
 ## Prepare Cipher Matrix
 grid = []
-gridsize = 6
+matrix_md = ''
+GRIDSIZE = 6
+MATRIXCOPIES = 2
 
-for j in range(0, gridsize + 1):
+for j in range(0, GRIDSIZE + 1):
     gridrow = []
     if j == 1:
-	for i in range(0, gridsize):
+        for i in range(0, GRIDSIZE):
             gridrow.append('---')
     else:
-        for i in range(0, gridsize):
-            choice = random.choice(choices)
+        for i in range(0, GRIDSIZE):
+            choice = random.choice(CHOICES)
             while (any(choice in s for s in grid) or any(choice in s for s in gridrow)):
-                choice = random.choice(choices)
+                choice = random.choice(CHOICES)
             gridrow.append(choice)
     grid.append(gridrow)
 
 ## Modify to Markdown
 
-PFmatrix = ''
-for j in grid:
-    rowstring = '| '
-    for i in j:
-        rowstring += i + ' | '
-    rowstring += ' \n'
-    PFmatrix += rowstring
+for row in grid:
+    matrix_md += ''.join(['| ',' | '.join(row),' |\n'])
 
 ## Output to file
 
-matrixCopies = 2
+FNAME = ''.join(['output/',date.today().strftime("%Y%m%d"),'_',''.join(grid[0]),'.md'])
+with open(FNAME, mode='w', encoding='utf-8') as f:
+    for x in range(0, MATRIXCOPIES):
+        f.write(''.join(['# ', date.today().strftime("%Y%m%d"),'\n\n']))
+        f.write(matrix_md)
+        f.write('\n---\n')
 
-fID = ''
-for i in grid[0]:
-    fID += i
-
-fname = 'output/' + today.strftime("%Y%m%d") + '_' + fID + '.md'
-f = open(fname, 'w')
-
-for x in range(0, matrixCopies):
-    f.write('# ' + today.strftime("%Y%m%d") + '\n\n')
-    f.write(PFmatrix)
-    f.write('\n---\n')
-
-f.write('For Academic Purposes Only - GPL-3.0-only  \n\n')
-f.write('[Source Code](https://github.com/alexpaths/playfair)\n')
-f.close()
+    f.write('For Academic Purposes Only - GPL-3.0-only  \n\n')
+    f.write('[Source Code](https://github.com/alexpaths/playfair)\n')
 
 ## EOF
