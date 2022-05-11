@@ -21,7 +21,7 @@ my $fname = 'output/' . $datestring . '_' . join('',@shuffled_choices[0..5]) . '
 open(outfile,'>',$fname);
 print outfile '# ' . $datestring . "\n\n";
 print outfile "|" . join('|',@shuffled_choices[0..5]) . "|\n";
-print outfile "|" . join('|',('---') x 6), "|\n";
+print outfile "|" . join('|',(':---:') x 6), "|\n";
 print outfile "|" . join('|',@shuffled_choices[6..11]) . "|\n";
 print outfile "|" . join('|',@shuffled_choices[12..17]) . "|\n";
 print outfile "|" . join('|',@shuffled_choices[18..23]) . "|\n";

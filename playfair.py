@@ -12,41 +12,31 @@ import string
 import random
 
 ## Global Variables
-CHOICES = ''.join([string.ascii_uppercase,string.digits]) # Must be of a length such that GRIDSIZE is an integer
+CHOICES = ''.join([string.ascii_uppercase,string.digits])
+output = [*range(0,len(CHOICES),1)]
 
 ## Prepare Cipher Matrix
-grid = []
-matrix_md = ''
-GRIDSIZE = 6 # GRIDSIZE left as a variable to leave room for more CHOICES
-MATRIXCOPIES = 2
+random.shuffle(output)
 
-for j in range(0, GRIDSIZE + 1):
-    gridrow = []
-    if j == 1:
-        for i in range(0, GRIDSIZE): # Looping so GRIDSIZE is variable for additional CHOICES
-            gridrow.append(':---:')
-    else:
-        for i in range(0, GRIDSIZE):
-            choice = random.choice(CHOICES)
-            while (any(choice in s for s in grid) or any(choice in s for s in gridrow)):
-                choice = random.choice(CHOICES)
-            gridrow.append(choice)
-    grid.append(gridrow)
+i = 0
+for num in output:
+    output[i] = CHOICES[num]
+    i = i + 1
 
-## Modify to Markdown
-
-for row in grid:
-    matrix_md += ''.join(['| ',' | '.join(row),' |\n'])
+# print (str(''.join(output)))
 
 ## Output to file
-
-FNAME = ''.join(['output/',date.today().strftime("%Y%m%d"),'_',''.join(grid[0]),'.md'])
+FNAME = ''.join(['output/',date.today().strftime("%Y-%m-%d"),'_',''.join(output[0:6]),'.md'])
 with open(FNAME, mode='w', encoding='utf-8') as f:
-    for x in range(0, MATRIXCOPIES):
-        f.write(''.join(['# ', date.today().strftime("%Y%m%d"),'\n\n']))
-        f.write(matrix_md)
-        f.write('\n---\n')
-
+    f.write(''.join(['# ', date.today().strftime("%Y-%m-%d"),'\n\n']))
+    f.write(''.join(['|','|'.join(output[0:6]),'|\n']))
+    f.write('|:---:|:---:|:---:|:---:|:---:|:---:|\n')
+    f.write(''.join(['|','|'.join(output[6:12]),'|\n']))
+    f.write(''.join(['|','|'.join(output[12:18]),'|\n']))
+    f.write(''.join(['|','|'.join(output[18:24]),'|\n']))
+    f.write(''.join(['|','|'.join(output[24:30]),'|\n']))
+    f.write(''.join(['|','|'.join(output[30:37]),'|\n']))
+    f.write('\n---\n')
     f.write('For Academic Purposes Only - GPL-3.0-only  \n\n')
     f.write('[Source Code](https://github.com/alexpaths/playfair)\n')
 
